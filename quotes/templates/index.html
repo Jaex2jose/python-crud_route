@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login</title>
+</head>
+<body>
+    <h2>Registration</h2>
+
+    <form action="/registration" method="POST">
+
+        {% csrf_token %}
+
+        <h3>Name: <input type="text" name="name_input"></h3>
+        <h3>Email: <input type="text" name="email_input"></h3>
+        <h3>Password: <input type="text" name="password_input"></h3>
+        <h3>Confirm PW: <input type="text" name="confirmpw_input"></h3>
+    
+        <input type="submit" value="Register">
+
+    </form>
+
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/login" method="POST">
+
+        {% csrf_token %}
+
+        <h3>Email: <input type="text" name="email_input"></h3>
+        <h3>Password: <input type="text" name="password_input"></h3>
+
+        <input type="submit" value="Login">
+        
+    </form>
+    
+</body>
+</html>

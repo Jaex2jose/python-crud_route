@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User and Quotes</title>
+</head>
+<body>
+
+    <h3>Posted by {{all_info.first_name}}</h3>
+    <h3>count {{all_info.id}}</h3>
+
+    {% for quote in all_info.quotes.all %}
+    
+    <h2>{{quote.author}}</h2>
+    <h3>{{quote.quote}}</h3>
+
+    {% endfor %}
+    
+
+ 
+ 
+
+
+    
+</body>
+</html>

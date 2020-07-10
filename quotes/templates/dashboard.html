@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Board</title>
+</head>
+<body>
+    <h2>Welcome, {{request.session.name}}</h2>
+
+    <h4>Quotable Quotes</h4>
+
+  
+
+    
+
+    <div>
+    {% for quote in all_quotes%}
+    
+    {% if request.session.id == quote.posted.id %}
+    <a href="/edit/{{quote.id}}">edit</a> | <a href="/delete/{{quote.id}}">delete</a>
+    {% endif%}
+
+    <h4>{{quote.author}}</h4>
+    <h4>{{quote.quote}}</h4>
+
+    <h4>Posted by: <a href="/users/{{quote.posted.id}}">{{quote.posted.first_name}}</a> </h4>
+    {% endfor %}
+    </div>
+
+   
+
+
+    <h3>Contribute a Quote</h3>
+    <form action="/createq" method="POST">
+
+        {% csrf_token %}
+
+        <h4>Quoted By: <input type="text" name="quotedby_input"></h4>
+
+        <h4>Message / Quote: <input type="text" name="message_input"></h4>
+
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <input type="submit" value="Submit">
+    
+    </form>
+
+    <a href="/logout">Logout</a>
+
+    
+</body>
+</html>
